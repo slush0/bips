@@ -175,17 +175,17 @@ Those proposing changes should consider that ultimately consent may rest with th
 | Standard
 | Draft
 |-
-| 40
-| Stratum wire protocol
+| [[bip-0040.mediawiki|40]]
+| Stratum mining initiation protocol
 | Marek Palatinus
 | Standard
-| BIP number allocated
+| Draft
 |-
-| 41
+| [[bip-0041.mediawiki|41]]
 | Stratum mining protocol
 | Marek Palatinus
 | Standard
-| BIP number allocated
+| Draft
 |-
 | [[bip-0042.mediawiki|42]]
 | A finite monetary supply for Bitcoin

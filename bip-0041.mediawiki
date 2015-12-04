@@ -1,0 +1,26 @@
+<pre>
+  BIP:     BIP-0041
+  Title:   Stratum minining protocol (Stratum Binary)
+  Authors: Marek Palatinus <slush@satoshilabs.com>
+           Jan Capek <jan.capek@braiins.cz>
+           Pavel Moravec <pavel.moravec@braiins.cz>
+  Status:  Draft
+  Type:    Standards Track
+  Created: 2015-12-03
+</pre>
+
+==Abstract==
+
+This BIP describes the implementation of 
+
+==Motivation==
+
+==Reference Implementation==
+
+Reference implementation is available from
+
+http://github.com/slush0/stratum/
+
+Stratum mining proxy implementing Stratum binary (BIP41) is available from
+
+http://github.com/slush0/stratum-mining-proxy/
