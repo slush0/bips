@@ -1,6 +1,6 @@
 <pre>
   BIP:     BIP-0040
-  Title:   Stratum minining initiation protocol (Stratum MIP)
+  Title:   Stratum Mining Initiation Protocol (S-MIP)
   Authors: Marek Palatinus <slush@satoshilabs.com>
            Jan Capek <jan.capek@braiins.cz>
            Pavel Moravec <pavel.moravec@braiins.cz>
@@ -11,9 +11,20 @@
 
 ==Abstract==
 
-This BIP describes the implementation of 
+This BIP describes the Stratum Mining Initiation Protocol that is intended to strengthen global mining infrastructure by making it more robust and resistant against DDoS attacks.
+
+This document proposes a standard for initiating a mining session with a pool in a way that allows only authenticated user/miner to proceed and leaves any malicious traffic outside. 
+
+The implementation relies on the fact that it is possible to completely close firewall on the edge of the mining infrastructure (ideally on the edge routers) and let only authenticated traffic in. At the same time, the authentication is accomplished by communicating via a standard HTTP protocol. There are HTTP providers that are able to withstand almost any size of DDoS attack.
+
 
 ==Motivation==
+
+Recent attacks targeting mining pools have shown that protecting mining infrastructure against DDoS attacks is a difficult and rather expensive task. Since mining pools are crucial part of the entire Bitcoin ecosystem, it is worth implementing a mining session initiation protocol that renders DDoS attacks inefficient.
+
+
+==Specification==
+
 
 ==Reference Implementation==
 
