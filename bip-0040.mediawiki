@@ -25,6 +25,48 @@ Recent attacks targeting mining pools have shown that protecting mining infrastr
 
 ==Specification==
 
+=== Variant 1 (NAT traversal using simultaneous TCP open) ===
+
+
+
+- CLIENT->STUN: determine NAT type using a public STUN server (currently most are
+  UDP only, but it should still allow determining the NAT type)
+
+- CLIENT->WEBSERVER: submit public IP, expected source port and NAT
+  type via web API. Each client is authenticated with an API key
+
+- WEBSERVER->STRATUM PROXY: tell stratum proxy about mining session initiation (destination IP, destination port)
+
+- STRATUM PROXY->CLIENT: start connection attempts to client 
+
+- CLIENT->STRATUM PROXY: start connection attempts to the proxy using preselected source port, so that firewall/NAT piercing may succeed
+
+- (connection successful): regular stratum protocol follows and stratum proxy forwards the connection to the actual stratum server providing mining jobs.
+
+
+=== Variant 2 (UPnP portforwarding setup - assumes public IP of miner's router)
+
+This variant can also be named "Let us know your connection details,
+we will call you back".
+
+- CLIENT->STUN: determine public IP using an arbitrary public STUN
+  server or similar service
+
+- CLIENT->LOCAL INTERNET ROUTER: use UPnP to enable port forwarding of a selected port
+
+- CLIENT->WEBSERVER: submit public IP, source port that is being port
+  forwarded on the router. Client authenticates with an API key
+  towards the webserver.
+
+- CLIENT: start listening for incoming connections on the forwarded port
+
+- WEBSERVER->STRATUM PROXY: tell stratum proxy about mining session initiation (destination IP, destination port)
+
+- STRATUM PROXY->CLIENT: start connection attempts to client
+
+- (connection successful): see variant 1
+
+
 
 ==Reference Implementation==
 
