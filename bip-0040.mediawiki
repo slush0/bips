@@ -25,6 +25,48 @@ Recent attacks targeting mining pools have shown that protecting mining infrastr
 
 ==Specification==
 
+=== MIP Message Format ===
+
+All messages are HTTP POST requests with JSON payload. Content-Type *MUST BE*
+ **application/json**.
+
+
+==== Mining Initiation Message ====
+
+- **api_key**: API Key/Login name
+- **password**: (optional password)
+- **accepted_protocols**: List of supported mining protocols on client side ('stratum+tcp', 'stratum2+tcp', 'gbt', etc.). The protocols are sorted by preference - higher priority protocols come first.
+
+
+==== Mining Initiation Response =====
+
+The server should always respond within 30 seconds.
+
+
+===== Status Code: 200 OK =====
+
+MIP Server provides:
+- **protocol**: Mining protocol (e.g.: 'stratum+tcp')
+- **host**: Mining host (e.g.: 'eu.stratum.slushpool.com'
+- **port**: Mining port (e.g.: 3333)
+- **server_time**: Current time of the server (UTC seconds since Unix epoch)
+- **expiration**: The miner has to open its mining session at the specified host within this timeout (seconds) since **server_time**.
+
+
+===== Status Code: 403 Forbidden =====
+
+The connecting client has provided invalid API Key, invalid login
+credentials, or none of the requested mining protocols is supported by
+the mining provider.
+
+- **msg**: Message with explanation
+
+
+===== Status Code: 307 Temporary Redirect =====
+
+The temporary redirect means that the server is either still processing the request or needs to redirect the miner to a more suitable destination endpoint. The miner (client) should follow the provided redirect URL with the same payload as the **Mining Initiation Message**.
+
+
 === Variant 1 (NAT traversal using simultaneous TCP open) ===
 
 
